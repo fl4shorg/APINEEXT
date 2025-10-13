@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Rota Não Encontrada | API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff6b6b, #ffa36c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            text-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #e6e6e6;
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #b3b3b3;
+        }
+        
+        .details {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: left;
+            border-left: 4px solid #ff6b6b;
+        }
+        
+        .details h3 {
+            margin-bottom: 10px;
+            color: #ffa36c;
+        }
+        
+        .details p {
+            margin-bottom: 15px;
+        }
+        
+        .code-block {
+            background: #0f1419;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 15px 0;
+            border: 1px solid #2a2a3a;
+        }
+        
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #4e54c8, #8f94fb);
+            color: white;
+            box-shadow: 0 4px 15px rgba(78, 84, 200, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e6e6e6;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #4348b0, #7a7fe0);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .api-status {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #4CAF50;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .logo {
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #8f94fb;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .error-code {
+                font-size: 5rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">API<span style="color: #ffa36c;">Service</span></div>
+    
+    <div class="container">
+        <div class="error-code">404</div>
+        <h1>Rota da API Não Encontrada</h1>
+        
+        <div class="message">
+            O endpoint que você está tentando acessar não existe ou foi movido.
+        </div>
+        
+        <div class="details">
+            <h3>Informações Técnicas</h3>
+            <p>A rota solicitada não foi encontrada no servidor. Isso pode acontecer por vários motivos:</p>
+            
+            <div class="code-block">
+                <span style="color: #ff6b6b;">GET</span> <span style="color: #8f94fb;">/api/v1/</span><span style="color: #ffa36c;">[rota-inexistente]</span> <span style="color: #4CAF50;">404 Not Found</span>
+            </div>
+            
+            <p>Verifique se:</p>
+            <ul style="margin-left: 20px; margin-bottom: 15px;">
+                <li>A URL está correta</li>
+                <li>O método HTTP está apropriado para o endpoint</li>
+                <li>Você está usando a versão correta da API</li>
+            </ul>
+        </div>
+        
+        <div class="actions">
+            <a href="/" class="btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                </svg>
+                Voltar para a Página Inicial
+            </a>
+            <a href="/docs" class="btn btn-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                </svg>
+                Documentação da API
+            </a>
+        </div>
+        
+        <div class="api-status">
+            <div class="status-item">
+                <div class="status-dot"></div>
+                <span>API Online</span>
+            </div>
+            <div class="status-item">
+                <span>Request ID: #{{requestId}}</span>
+            </div>
+            <div class="status-item">
+                <span>Tempo de Resposta: {{responseTime}}ms</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulação de dados dinâmicos
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gerar um ID de requisição aleatório
+            const requestId = Math.random().toString(36).substring(2, 10).toUpperCase();
+            
+            // Simular tempo de resposta
+            const responseTime = Math.floor(Math.random() * 50) + 10;
+            
+            // Atualizar elementos com dados dinâmicos
+            document.querySelectorAll('span').forEach(el => {
+                if (el.textContent.includes('{{requestId}}')) {
+                    el.textContent = el.textContent.replace('{{requestId}}', requestId);
+                }
+                if (el.textContent.includes('{{responseTime}}')) {
+                    el.textContent = el.textContent.replace('{{responseTime}}', responseTime);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
