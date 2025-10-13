@@ -1,7 +1,7 @@
 {
   "name": "api neext",
   "version": "3.0.0",
-  "description": "",
+  "description": "hhh",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
