@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     const {
       perfil, // URL da imagem de perfil
       wallpaper, // URL do wallpaper
-      nome = 'neext',
+      nome = 'NEON',
       velocidade = '999',
       rotulo = 'VELOCIDADE',
       sistema = '',
