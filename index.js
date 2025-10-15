@@ -19,7 +19,7 @@ const kwai = require('./arquivos/kwai');
 const mediafire = require("./arquivos/mediafire");
 
 // Usar rotas
-
+const pingRouter = require('./arquivos/ping');
 
 const youtube2Routes = require('./arquivos/YouTube2');
 
@@ -116,6 +116,7 @@ app.use('/api', tumblrRoutes);
 app.use('/ephoto', ephotoRoute);
 app.use('/api', redditRouter);
 // Categoria notícias //
+app.use('/ping', pingRouter);
 app.use("/search/happymod", happymod);
 app.use("/jornal/noticias", noticiasRouter);
 app.use('/jornal/espn', espnRouter);
