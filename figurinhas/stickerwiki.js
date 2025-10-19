@@ -84,7 +84,7 @@ async function sendRandomStickerLink(res, stickers, cache) {
 
 // ==== Definição das coleções ====
 const collections = [
-  { name: "dexter", url: "https://stickers.wiki/pt/whatsapp/the_dexter/", cache: cacheDexter },
+  { name: "dexter", url: "http://stickers.wiki/pt/whatsapp/the_dexter/", cache: cacheDexter },
   { name: "elite", url: "https://stickers.wiki/pt/whatsapp/elitelunelish_by_demybot/", cache: cacheElite },
   { name: "monkey", url: "https://stickers.wiki/pt/whatsapp/moonkeyy/", cache: cacheMonkey },
   { name: "caracal", url: "https://stickers.wiki/pt/telegram/bigfloppasshole_by_fstikbot/", cache: cacheCaracal },
