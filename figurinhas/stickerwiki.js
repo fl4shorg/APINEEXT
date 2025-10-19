@@ -28,10 +28,9 @@ async function getStickers(url, nomeColecao) {
         "User-Agent":
           "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
       },
-      timeout: 10000, // 10s timeout
+      timeout: 10000,
     });
 
-    // Limitar até o início da seção "Categorias"
     const containerHtml = data.split('<h2 class="text-lg font-bold">Categorias:</h2>')[0];
     const $ = cheerio.load(containerHtml);
 
@@ -53,8 +52,8 @@ async function getStickers(url, nomeColecao) {
   }
 }
 
-// ==== Função para enviar figurinha aleatória sem repetir ====
-async function sendRandomImage(res, stickers, cache) {
+// ==== Função para enviar **link JSON** da figurinha aleatória sem repetir ====
+async function sendRandomStickerLink(res, stickers, cache) {
   try {
     if (!stickers.length) {
       return res.status(404).json({
@@ -68,14 +67,16 @@ async function sendRandomImage(res, stickers, cache) {
     const random = available[Math.floor(Math.random() * available.length)];
     cache.push(random);
 
-    const response = await axios.get(random.url, { responseType: "stream" });
-    res.setHeader("Content-Type", "image/webp");
-    response.data.pipe(res);
+    res.json({
+      success: true,
+      name: random.name,
+      url: random.url
+    });
   } catch (err) {
     console.error("Erro ao enviar figurinha:", err.message);
     res.status(500).json({
       success: false,
-      message: "Erro ao carregar figurinha.",
+      message: "Erro ao selecionar figurinha.",
       error: err.message
     });
   }
@@ -101,10 +102,10 @@ const collections = [
 
 // ==== Criação dinâmica das rotas ====
 collections.forEach(col => {
-  // Rota da figurinha aleatória (local stream)
+  // Rota da figurinha aleatória (JSON com URL)
   router.get(`/${col.name}`, async (req, res) => {
     const stickers = await getStickers(col.url, col.name);
-    await sendRandomImage(res, stickers, col.cache);
+    await sendRandomStickerLink(res, stickers, col.cache);
   });
 
   // Rota JSON com todas as figurinhas
