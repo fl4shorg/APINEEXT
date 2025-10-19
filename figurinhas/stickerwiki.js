@@ -23,21 +23,26 @@ let cacheEuphoria = [];
 // ==== Função genérica para buscar figurinhas ====
 async function getStickers(url, nomeColecao) {
   try {
-    const { data } = await axios.get(url);
-    const $ = cheerio.load(data);
-    const stickers = [];
+    const { data } = await axios.get(url, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
+      },
+      timeout: 10000, // 10s timeout
+    });
 
     // Limitar até o início da seção "Categorias"
     const containerHtml = data.split('<h2 class="text-lg font-bold">Categorias:</h2>')[0];
-    const $$ = cheerio.load(containerHtml);
+    const $ = cheerio.load(containerHtml);
 
-    $$("img").each((_, el) => {
-      const src = $$(el).attr("src");
-      const alt = $$(el).attr("alt") || `${nomeColecao} Sticker`;
+    const stickers = [];
+    $("img").each((_, el) => {
+      const src = $(el).attr("src");
+      const alt = $(el).attr("alt") || `${nomeColecao} Sticker`;
       if (!src || !src.includes("assets.stickerswiki.app")) return;
       stickers.push({
         name: alt.trim(),
-        url: src.startsWith("http") ? src : `https:${src}`
+        url: src.startsWith("http") ? src : `https:${src}`,
       });
     });
 
